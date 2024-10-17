@@ -1,0 +1,4 @@
+---
+api_url: "http://localhost:9101"
+auth_url: "http://localhost:9100"
+api_key: "your-api-key"
