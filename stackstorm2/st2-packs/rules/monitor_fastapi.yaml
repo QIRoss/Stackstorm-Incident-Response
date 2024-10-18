@@ -1,0 +1,12 @@
+---
+name: "monitor_fastapi"
+pack: "default"
+trigger:
+  type: "core.st2.generic.actiontrigger"
+  parameters:
+    ref: "core.local"
+criteria:
+  trigger.status:
+    pattern: "failed"
+action:
+  ref: "default.restart_fastapi"

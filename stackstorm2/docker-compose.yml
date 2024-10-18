@@ -1,0 +1,26 @@
+services:
+  stackstorm:
+    image: stackstorm/stackstorm:latest
+    container_name: stackstorm
+    environment:
+      ST2_AUTH_USERNAME: st2admin
+      ST2_AUTH_PASSWORD: Ch@ngeMe
+    depends_on:
+      - fastapi
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./st2-packs:/opt/stackstorm/packs
+    ports:
+      - "9100:9100"
+      - "9101:9101"
+      - "8080:8080"
+
+  fastapi:
+    image: tiangolo/uvicorn-gunicorn-fastapi:python3.8
+    container_name: fastapi
+    command: uvicorn main:app --host 0.0.0.0 --port 80
+    volumes:
+      - ./main.py:/app/main.py
+    ports:
+      - "8000:80"
+

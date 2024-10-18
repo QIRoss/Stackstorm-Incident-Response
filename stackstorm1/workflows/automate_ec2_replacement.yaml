@@ -1,0 +1,34 @@
+---
+name: "automate_ec2_replacement"
+description: "Automatically replace a crashed EC2 instance with a t2.nano instance, fallback to t2.micro if needed."
+pack: "aws"
+type: "action-chain"
+actions:
+  stop_medium_instance:
+    ref: "aws.stop_instance"
+    parameters:
+      instance_id: "{{trigger.instance_id}}"
+
+  launch_t2_nano_instance:
+    ref: "aws.create_instance"
+    parameters:
+      instance_type: "t2.nano"
+      image_id: "{{trigger.image_id}}"
+      key_name: "qiross"
+      security_group_ids: ["sg-09f4c9fee2f7789e8"]
+    on-failure: launch_t2_micro_instance
+
+  launch_t2_micro_instance:
+    ref: "aws.create_instance"
+    parameters:
+      instance_type: "t2.micro"
+      image_id: "{{trigger.image_id}}"
+      key_name: "qiross"
+      security_group_ids: ["sg-09f4c9fee2f7789e8"]
+    on-success: terminate_medium_instance
+
+  terminate_medium_instance:
+    ref: "aws.terminate_instance"
+    parameters:
+      instance_id: "{{trigger.instance_id}}"
+    on-success: launch_large_instance

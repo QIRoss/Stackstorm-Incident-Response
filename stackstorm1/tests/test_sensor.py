@@ -6,7 +6,6 @@ class TestEC2CrashSensor(unittest.TestCase):
         self.sensor = EC2CrashSensor()
 
     def test_poll(self):
-        # Simulate a crash event
         event = {
             'MetricAlarms': [
                 {
@@ -16,12 +15,9 @@ class TestEC2CrashSensor(unittest.TestCase):
             ]
         }
 
-        # Mock the CloudWatch API response
         self.sensor.client.describe_alarms = lambda: event
         
-        # Trigger poll and check if sensor dispatches correctly
         self.sensor.poll()
-        # Add assertions to check the correct event was dispatched
 
 if __name__ == '__main__':
     unittest.main()

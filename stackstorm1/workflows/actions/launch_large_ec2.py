@@ -6,7 +6,7 @@ class LaunchLargeEC2(Action):
         ec2_client = boto3.client('ec2')
 
         response = ec2_client.run_instances(
-            InstanceType='t2.large',
+            InstanceType='t2.micro',
             MaxCount=1,
             MinCount=1,
             ImageId=image_id,

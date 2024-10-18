@@ -10,9 +10,13 @@ Day 47–48: Automate incident response using StackStorm for common operational 
 
 ## Project Overview
 
-This repository contains a StackStorm-based workflow to automatically replace a crashed medium EC2 instance with a large EC2 instance. It monitors the instance status using AWS CloudWatch and automates the incident response.
+(INCOMPLETE PROJECT THIS SHOULD NOT BE CLONED NEITHER USED)
 
-### Project Structure
+Folder stackstorm1 contains a StackStorm-based workflow to automatically replace a crashed medium EC2 instance with a large EC2 instance. It monitors the instance status using AWS CloudWatch and automates the incident response.
+
+Folder stackstorm2 contains basic StackStorm-based workflow to automatically reaplce a crashed FastAPI container for two containers.
+
+### Project Structure (stackstorm1)
 
 - **workflows/**: Contains the StackStorm workflow and related scripts.
 - **tests/**: Unit tests to validate the actions and sensors.
@@ -37,7 +41,7 @@ This repository contains a StackStorm-based workflow to automatically replace a 
 st2 run workflows.automate_ec2_replacement
 ```
 
-## How to Use
+### How to Use
 
 ## Author
 This project was implemented by [Lucas de Queiroz dos Reis][2]. It is based on the [100 Days System Design for DevOps and Cloud Engineers][1].
